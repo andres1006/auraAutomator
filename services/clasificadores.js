@@ -38,10 +38,12 @@ const callChecksStudies = (pathPaciente, paciente) => {
       //console.log(values);
       //console.log("aqui subo a base de datos");
       //update json con los clasificadores
+      Promise.all(push_DB_datos(pathPaciente), uploadToDBToTest(pathPaciente), updateJsonClass()).then(values=>{
 
-      push_DB_datos(pathPaciente);
-      uploadToDBToTest(pathPaciente);
-
+      }).catch(err=>{
+        console.log(err);
+      })
+      
     }).catch(err =>{
       console.log(err);
     });

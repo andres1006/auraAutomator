@@ -15,15 +15,20 @@ if(!runProcess){
 
 
 function uploadToDBToDatos(pathPaciente) {
-    //console.log("subir a DAtos paciente "+ path.dirname(path.dirname(pathPaciente.dir)));
-    var command = "cd /home/andresagudelo/Documentos; python ./uploadToDBfromCSV.py '"+path.dirname(path.dirname(pathPaciente.dir))+"'";
-    runProcess(command).then(data =>{
-      generatePdf(pathPaciente);
-      //console.log(data);
-    }).catch(err =>{
-      //console.log(err);
-    });
-    //generateDocument(pathPaciente.dir, "db_datosPy" );  
+  return new Promise((resolve, reject)=>{
+    try {
+      //console.log("subir a DAtos paciente "+ path.dirname(path.dirname(pathPaciente.dir)));
+      var command = "cd /home/andresagudelo/Documentos; python ./uploadToDBfromCSV.py '"+path.dirname(path.dirname(pathPaciente.dir))+"'";
+      runProcess(command).then(data =>{
+        resolve(data);
+      }).catch(err =>{
+        reject(err);
+      });
+      //generateDocument(pathPaciente.dir, "db_datosPy" );  
+    } catch (error) {
+      reject(error);
+    }
+  })
 }
 
 

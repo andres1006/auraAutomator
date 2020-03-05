@@ -54,6 +54,7 @@ function searchFiles(path) {
   //   //array de promoesas
    promesasArraya = [];
 
+   
     //leo el directorio que quiero inspeccionar 
     fs.readdir(path, (err, files) => {
       //verifico que la ruta sea correcta y que no haya ningun error
